@@ -16,7 +16,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     val PUBLIC_MATCHERS = arrayOf(
-            "/h2-console"
+            "/h2-console",
+            "/status-check"
     )
 
     val PUBLIC_MATCHERS_GET = arrayOf(
@@ -26,7 +27,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity){
         http.cors().and().csrf().disable()
         http.authorizeRequests()
-                .antMatchers(*PUBLIC_MATCHERS).permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
