@@ -1,5 +1,7 @@
 package com.transportadora.app.model
 
+import org.springframework.lang.Nullable
+import java.io.Serializable
 import javax.persistence.*
 
 @Entity
@@ -8,11 +10,11 @@ data class CadastroProduto(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Int,
 
-        val produto: String,
+        val nomeProduto : String,
 
         val preco: Double,
 
         @ManyToOne
-        @JoinColumn(name = "pedido_id", nullable = false)
-        val pedido : Pedido
-)
+        @JoinColumn(name = "pedido_id")
+        val pedido : Pedido?
+) : Serializable
